@@ -2,52 +2,36 @@ import { FullName } from './FullName'
 
 describe('FullName', () => {
   test('is created with props', () => {
-    const firstName = 'John'
-    const lastName = 'Doe'
-
-    const fullName = new FullName({
-      firstName,
-      lastName
-    })
-
-    expect(fullName.firstName).toBe(firstName)
-    expect(fullName.lastName).toBe(lastName)
+    const fullName = FullName.create('John', 'Doe')
+    expect(fullName.firstName).toBe('John')
+    expect(fullName.lastName).toBe('Doe')
   })
 
   test('cannot change props', () => {
-    const firstName = 'John'
-    const lastName = 'Doe'
-
-    const fullName = new FullName({
-      firstName,
-      lastName
-    })
-
+    const fullName = FullName.create('John', 'Doe')
     expect(() => {
       fullName.props.firstName = 'Mike'
     }).toThrowError(/^Cannot assign to read only property/)
   })
 
   test('can compare object', () => {
-    const firstName = 'John'
-    const lastName = 'Doe'
-
-    const fullName1 = new FullName({
-      firstName,
-      lastName
-    })
-
-    const fullName2 = new FullName({
-      firstName,
-      lastName
-    })
-
-    const fullName3 = new FullName({
-      firstName: 'Mike',
-      lastName
-    })
+    const fullName1 = FullName.create('John', 'Doe')
+    const fullName2 = FullName.create('John', 'Doe')
+    const fullName3 = FullName.create('Mike', 'Doe')
 
     expect(fullName1.equals(fullName2)).toBe(true)
     expect(fullName1.equals(fullName3)).toBe(false)
+  })
+
+  test('validates first name', () => {
+    expect(() => {
+      FullName.create('J0hn', 'Doe')
+    }).toThrowError('First name: "J0hn" is not valid.')
+  })
+
+  test('validates last name', () => {
+    expect(() => {
+      FullName.create('John', '')
+    }).toThrowError('Last name: "" is not valid.')
   })
 })
