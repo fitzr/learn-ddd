@@ -19,16 +19,16 @@ export class FullName extends ValueObject<FullNameProps> {
   }
 
   static create(firstName: string, lastName: string): FullName {
-    if (!this.isValidateName(firstName)) {
+    if (!this.isValidName(firstName)) {
       throw new Error(`First name: "${firstName}" is not valid.`)
     }
-    if (!this.isValidateName(lastName)) {
+    if (!this.isValidName(lastName)) {
       throw new Error(`Last name: "${lastName}" is not valid.`)
     }
     return new FullName({ firstName, lastName })
   }
 
-  static isValidateName(name: string): boolean {
+  static isValidName(name: string): boolean {
     return /^[a-zA-Z]+$/.test(name)
   }
 }
