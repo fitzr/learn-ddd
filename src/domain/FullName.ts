@@ -1,6 +1,6 @@
 import { ValueObject } from './ValueObject'
 
-export type FullNameProps = {
+type FullNameProps = {
   firstName: string
   lastName: string
 }
