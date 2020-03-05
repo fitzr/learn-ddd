@@ -1,7 +1,6 @@
-import { ValueObject } from './ValueObject'
+import { ValueObject, ValueObjectProps } from './ValueObject'
 
-// eslint-disable-next-line  @typescript-eslint/no-explicit-any
-export abstract class Entity<V extends ValueObject<any>, T> {
+export abstract class Entity<V extends ValueObject<ValueObjectProps>, T> {
   readonly id: V
   readonly props: T
 

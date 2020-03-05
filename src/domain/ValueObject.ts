@@ -1,6 +1,6 @@
 import shallowEqual from 'shallowequal'
 
-type ValueObjectProps = {
+export type ValueObjectProps = {
   [index: string]: any // eslint-disable-line  @typescript-eslint/no-explicit-any
 }
 

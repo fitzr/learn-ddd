@@ -25,13 +25,13 @@ describe('User', () => {
 
   test('compare by id', () => {
     const id1 = new UserId('testId')
-    const id1_2 = new UserId('testId')
+    const sameAsId1 = new UserId('testId')
     const id2 = new UserId('testId2')
     const user1 = new User(id1, { name: 'test' })
-    const user1_2 = new User(id1_2, { name: 'test' })
+    const sameIdAsUser1 = new User(sameAsId1, { name: 'test' })
     const user2 = new User(id2, { name: 'test' })
 
-    expect(user1.equals(user1_2)).toBe(true)
+    expect(user1.equals(sameIdAsUser1)).toBe(true)
     expect(user1.equals(user2)).toBe(false)
   })
 })
