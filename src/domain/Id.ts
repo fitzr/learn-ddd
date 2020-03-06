@@ -1,15 +1,15 @@
 import { ValueObject } from './ValueObject'
 
-type UserIdProps = {
+type IdProps = {
   value: string
 }
 
-export class UserId extends ValueObject<UserIdProps> {
+export abstract class Id extends ValueObject<IdProps> {
   get value(): string {
     return this.props.value
   }
 
-  constructor(value: string) {
+  protected constructor(value: string) {
     super({ value })
   }
 }

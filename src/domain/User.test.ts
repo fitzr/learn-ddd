@@ -1,5 +1,4 @@
-import { UserId } from './UserId'
-import { User } from './User'
+import { User, UserId } from './User'
 
 describe('User', () => {
   test('has name', () => {

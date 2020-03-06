@@ -1,8 +1,14 @@
 import { Entity } from './Entity'
-import { UserId } from './UserId'
+import { Id } from './Id'
 
 type UserProps = {
   name: string
+}
+
+export class UserId extends Id {
+  constructor(value: string) {
+    super(value)
+  }
 }
 
 export class User extends Entity<UserId, UserProps> {
