@@ -1,6 +1,6 @@
-import { ValueObject, ValueObjectProps } from './ValueObject'
+import { Id } from './Id'
 
-export abstract class Entity<V extends ValueObject<ValueObjectProps>, T> {
+export abstract class Entity<V extends Id, T> {
   readonly id: V
   readonly props: T
 
