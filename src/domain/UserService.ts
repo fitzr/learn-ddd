@@ -10,6 +10,6 @@ export class UserService {
   ) {}
 
   exits(user: User): boolean {
-    return !!this.userRepository.userOfId(user.id)
+    return !!this.userRepository.findByName(user.name)
   }
 }

@@ -15,18 +15,25 @@ describe('UserService', () => {
 
   describe('exists', () => {
     test('returns true when exists', () => {
-      const user = new User(new UserId('testUserId'), {
-        name: new UserName('testUserName')
+      const user1 = new User(new UserId('user1'), {
+        name: new UserName('existsName')
       })
-      userRepository.save(user)
-      expect(userService.exits(user)).toBe(true)
+      userRepository.save(user1)
+      const user2 = new User(new UserId('user2'), {
+        name: new UserName('existsName')
+      })
+      expect(userService.exits(user2)).toBe(true)
     })
 
     test('returns false when not exists', () => {
-      const user = new User(new UserId('testUserId'), {
-        name: new UserName('testUserName')
+      const user1 = new User(new UserId('user1'), {
+        name: new UserName('existsName')
       })
-      expect(userService.exits(user)).toBe(false)
+      userRepository.save(user1)
+      const user2 = new User(new UserId('user2'), {
+        name: new UserName('uniqueName')
+      })
+      expect(userService.exits(user2)).toBe(false)
     })
   })
 })
