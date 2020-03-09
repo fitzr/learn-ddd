@@ -1,4 +1,4 @@
-import { Money } from './Money'
+import { Money } from '../../src/domain/Money'
 
 describe('Money', () => {
   test('adds same money', () => {

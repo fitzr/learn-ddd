@@ -12,9 +12,9 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
-    "test": "jest src",
-    "lint": "eslint src --ext .ts --ignore-pattern '**/*.d.ts'",
-    "lint:fix": "eslint src --ext .ts --ignore-pattern '**/*.d.ts' --fix"
+    "test": "jest test",
+    "lint": "eslint src test --ext .ts --ignore-pattern '**/*.d.ts'",
+    "lint:fix": "eslint src test --ext .ts --ignore-pattern '**/*.d.ts' --fix"
   },
   "devDependencies": {
     "@types/jest": "^25.1.3",
@@ -31,7 +31,9 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
+    "reflect-metadata": "^0.1.13",
     "shallowequal": "^1.1.0",
+    "tsyringe": "^4.1.0",
     "uuid": "^7.0.2"
   }
 }

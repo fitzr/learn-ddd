@@ -1,4 +1,4 @@
-import { User, UserId } from './User'
+import { User, UserId } from '../../src/domain/User'
 
 describe('User', () => {
   test('has name', () => {
