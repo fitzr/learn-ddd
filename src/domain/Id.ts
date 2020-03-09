@@ -10,6 +10,13 @@ export abstract class Id extends ValueObject<IdProps> {
   }
 
   protected constructor(value: string) {
+    Id.validateId(value)
     super({ value })
+  }
+
+  protected static validateId(value: string): void {
+    if (!value) {
+      throw new Error('Invalid id value.')
+    }
   }
 }

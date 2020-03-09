@@ -1,34 +1,21 @@
 import { Entity } from './Entity'
-import { Id } from './Id'
+import { UserId } from './UserId'
+import { UserName } from './UserName'
 
 type UserProps = {
-  name: string
-}
-
-export class UserId extends Id {
-  constructor(value: string) {
-    super(value)
-  }
+  name: UserName
 }
 
 export class User extends Entity<UserId, UserProps> {
-  get name(): string {
+  get name(): UserName {
     return this.props.name
   }
 
-  set name(v: string) {
-    User.validateName(v)
-    this.props.name = v
+  set name(name: UserName) {
+    this.props.name = name
   }
 
   constructor(id: UserId, props: UserProps) {
-    User.validateName(props.name)
     super(id, props)
-  }
-
-  static validateName(name: string): void {
-    if (!/^[a-zA-Z_]{3,15}$/.test(name)) {
-      throw new Error(`Username: "${name}" must be [a-zA-Z_]{3,15}`)
-    }
   }
 }

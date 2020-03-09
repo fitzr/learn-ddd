@@ -1,4 +1,5 @@
-import { User, UserId } from './User'
+import { User } from './User'
+import { UserId } from './UserId'
 
 export interface UserRepository {
   save(user: User): void
