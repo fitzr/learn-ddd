@@ -16,8 +16,8 @@ export class LogisticsCenter extends Entity<
   LogisticsCenterId,
   LogisticsCenterProps
 > {
-  constructor(id: LogisticsCenterId, props: LogisticsCenterProps) {
-    super(id, props)
+  constructor(props: LogisticsCenterProps, id: LogisticsCenterId) {
+    super(props, id)
   }
 
   ship(baggage: Baggage): Baggage {

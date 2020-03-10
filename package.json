@@ -11,6 +11,7 @@
   },
   "scripts": {
     "build": "tsc",
+    "build:clean": "tsc --build --clean && tsc --build",
     "watch": "tsc -w",
     "test": "jest test",
     "lint": "eslint src test --ext .ts --ignore-pattern '**/*.d.ts'",

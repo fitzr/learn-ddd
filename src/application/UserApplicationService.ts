@@ -6,6 +6,8 @@ import { UserName } from '../domain/UserName'
 import { User } from '../domain/User'
 import { UserId } from '../domain/UserId'
 import { UserData } from './UserData'
+import { MailAddress } from '../domain/MailAddress'
+import { RegisterUserCommand } from './RegisterUserCommand'
 
 @injectable()
 export class UserApplicationService {
@@ -14,8 +16,11 @@ export class UserApplicationService {
     private readonly userService: UserService
   ) {}
 
-  register(name: string): void {
-    const user = new User({ name: new UserName(name) })
+  register(command: RegisterUserCommand): void {
+    const user = new User({
+      name: new UserName(command.name),
+      mail: new MailAddress(command.mail)
+    })
     if (this.userService.exits(user)) {
       throw new Error('User already exists.')
     }
