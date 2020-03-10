@@ -32,13 +32,17 @@ describe('UserApplicationService', () => {
           new UserId('test_id')
         )
       )
-      const userData = userApplicationService.get('test_id')
+      const userData = userApplicationService.get(
+        new UpdateUserCommand('test_id')
+      )
       expect(userData?.id).toBe('test_id')
       expect(userData?.name).toBe('test_user')
     })
 
     test('returns undefined when the id dose not exist', () => {
-      expect(userApplicationService.get('BAD_ID')).toBeUndefined()
+      expect(
+        userApplicationService.get(new UpdateUserCommand('BAD_ID'))
+      ).toBeUndefined()
     })
   })
 
@@ -64,7 +68,7 @@ describe('UserApplicationService', () => {
   })
 
   describe('update', () => {
-    test('updates user', () => {
+    test('updates user name and mail address', () => {
       userRepository.save(
         new User(
           {
@@ -79,6 +83,42 @@ describe('UserApplicationService', () => {
       )
       const user = userRepository.findById(new UserId('test_id'))
       expect(user?.name.value).toBe('updated_name')
+      expect(user?.mail.value).toBe('updated@example.com')
+    })
+
+    test('updates user name', () => {
+      userRepository.save(
+        new User(
+          {
+            name: new UserName('test_user'),
+            mail: new MailAddress('test@example.com')
+          },
+          new UserId('test_id')
+        )
+      )
+      userApplicationService.update(
+        new UpdateUserCommand('test_id', 'updated_name')
+      )
+      const user = userRepository.findById(new UserId('test_id'))
+      expect(user?.name.value).toBe('updated_name')
+      expect(user?.mail.value).toBe('test@example.com')
+    })
+
+    test('updates mail address', () => {
+      userRepository.save(
+        new User(
+          {
+            name: new UserName('test_user'),
+            mail: new MailAddress('test@example.com')
+          },
+          new UserId('test_id')
+        )
+      )
+      userApplicationService.update(
+        new UpdateUserCommand('test_id', undefined, 'updated@example.com')
+      )
+      const user = userRepository.findById(new UserId('test_id'))
+      expect(user?.name.value).toBe('test_user')
       expect(user?.mail.value).toBe('updated@example.com')
     })
 

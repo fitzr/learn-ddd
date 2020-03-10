@@ -9,6 +9,7 @@ import { UserData } from './UserData'
 import { MailAddress } from '../domain/MailAddress'
 import { RegisterUserCommand } from './RegisterUserCommand'
 import { UpdateUserCommand } from './UpdateUserCommand'
+import { GetUserCommand } from './GetUserCommand'
 
 @injectable()
 export class UserApplicationService {
@@ -17,8 +18,8 @@ export class UserApplicationService {
     private readonly userService: UserService
   ) {}
 
-  get(id: string): UserData | undefined {
-    const userId = new UserId(id)
+  get(command: GetUserCommand): UserData | undefined {
+    const userId = new UserId(command.id)
     const user = this.userRepository.findById(userId)
     return user ? new UserData(user) : undefined
   }
@@ -42,12 +43,12 @@ export class UserApplicationService {
     }
     if (command.name) {
       user.name = new UserName(command.name)
-      if (this.userService.exits(user)) {
-        throw new Error('User already exists.')
-      }
     }
     if (command.mail) {
       user.mail = new MailAddress(command.mail)
+    }
+    if (this.userService.exits(user)) {
+      throw new Error('User already exists.')
     }
     this.userRepository.save(user)
   }
