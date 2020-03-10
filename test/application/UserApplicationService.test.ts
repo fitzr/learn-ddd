@@ -4,6 +4,10 @@ import { UserService } from '../../src/domain/UserService'
 import { UserApplicationService } from '../../src/application/UserApplicationService'
 import { UserName } from '../../src/domain/UserName'
 import { RegisterUserCommand } from '../../src/application/RegisterUserCommand'
+import { User } from '../../src/domain/User'
+import { MailAddress } from '../../src/domain/MailAddress'
+import { UpdateUserCommand } from '../../src/application/UpdateUserCommand'
+import { UserId } from '../../src/domain/UserId'
 
 describe('UserApplicationService', () => {
   const userRepository = new InMemoryUserRepository()
@@ -15,6 +19,27 @@ describe('UserApplicationService', () => {
 
   afterEach(() => {
     userRepository.store.clear()
+  })
+
+  describe('get', () => {
+    test('returns the user data', () => {
+      userRepository.save(
+        new User(
+          {
+            name: new UserName('test_user'),
+            mail: new MailAddress('test@example.com')
+          },
+          new UserId('test_id')
+        )
+      )
+      const userData = userApplicationService.get('test_id')
+      expect(userData?.id).toBe('test_id')
+      expect(userData?.name).toBe('test_user')
+    })
+
+    test('returns undefined when the id dose not exist', () => {
+      expect(userApplicationService.get('BAD_ID')).toBeUndefined()
+    })
   })
 
   describe('register', () => {
@@ -38,18 +63,57 @@ describe('UserApplicationService', () => {
     })
   })
 
-  describe('get', () => {
-    test('returns the user data', () => {
-      userApplicationService.register(
-        new RegisterUserCommand('test_user', 'test@example.com')
+  describe('update', () => {
+    test('updates user', () => {
+      userRepository.save(
+        new User(
+          {
+            name: new UserName('test_user'),
+            mail: new MailAddress('test@example.com')
+          },
+          new UserId('test_id')
+        )
       )
-      const userData = userApplicationService.get('1')
-      expect(userData?.id).toBe('1')
-      expect(userData?.name).toBe('test_user')
+      userApplicationService.update(
+        new UpdateUserCommand('test_id', 'updated_name', 'updated@example.com')
+      )
+      const user = userRepository.findById(new UserId('test_id'))
+      expect(user?.name.value).toBe('updated_name')
+      expect(user?.mail.value).toBe('updated@example.com')
     })
 
-    test('returns undefined when the id dose not exist', () => {
-      expect(userApplicationService.get('BAD_ID')).toBeUndefined()
+    test('returns error when name already exists', () => {
+      userRepository.save(
+        new User(
+          {
+            name: new UserName('test_user'),
+            mail: new MailAddress('test@example.com')
+          },
+          new UserId('test_id')
+        )
+      )
+      userRepository.save(
+        new User(
+          {
+            name: new UserName('exists_name'),
+            mail: new MailAddress('test@example.com')
+          },
+          new UserId('test_id2')
+        )
+      )
+      expect(() => {
+        userApplicationService.update(
+          new UpdateUserCommand('test_id', 'exists_name')
+        )
+      }).toThrowError('User already exists.')
+    })
+
+    test('return error when user id is not valid', () => {
+      expect(() => {
+        userApplicationService.update(
+          new UpdateUserCommand('test_id', 'exists_name')
+        )
+      }).toThrowError('User not found.')
     })
   })
 })

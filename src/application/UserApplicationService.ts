@@ -8,6 +8,7 @@ import { UserId } from '../domain/UserId'
 import { UserData } from './UserData'
 import { MailAddress } from '../domain/MailAddress'
 import { RegisterUserCommand } from './RegisterUserCommand'
+import { UpdateUserCommand } from './UpdateUserCommand'
 
 @injectable()
 export class UserApplicationService {
@@ -15,6 +16,12 @@ export class UserApplicationService {
     @inject('UserRepository') private readonly userRepository: UserRepository,
     private readonly userService: UserService
   ) {}
+
+  get(id: string): UserData | undefined {
+    const userId = new UserId(id)
+    const user = this.userRepository.findById(userId)
+    return user ? new UserData(user) : undefined
+  }
 
   register(command: RegisterUserCommand): void {
     const user = new User({
@@ -27,9 +34,21 @@ export class UserApplicationService {
     this.userRepository.save(user)
   }
 
-  get(id: string): UserData | undefined {
-    const userId = new UserId(id)
-    const user = this.userRepository.findById(userId)
-    return user ? new UserData(user) : undefined
+  update(command: UpdateUserCommand): void {
+    const id = new UserId(command.id)
+    const user = this.userRepository.findById(id)
+    if (!user) {
+      throw new Error('User not found.')
+    }
+    if (command.name) {
+      user.name = new UserName(command.name)
+      if (this.userService.exits(user)) {
+        throw new Error('User already exists.')
+      }
+    }
+    if (command.mail) {
+      user.mail = new MailAddress(command.mail)
+    }
+    this.userRepository.save(user)
   }
 }

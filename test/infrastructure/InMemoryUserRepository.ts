@@ -7,7 +7,8 @@ export class InMemoryUserRepository implements UserRepository {
   store = new Map<string, User>()
 
   findById(id: UserId): User | undefined {
-    return this.store.get(id.value)
+    const user = this.store.get(id.value)
+    return user ? this.clone(user) : undefined
   }
 
   findByName(name: UserName): User | undefined {

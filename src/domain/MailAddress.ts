@@ -12,6 +12,10 @@ export class MailAddress extends ValueObject<MailAddressProps> {
     super({ value: mailAddress })
   }
 
+  get value(): string {
+    return this.props.value
+  }
+
   protected static validateMailAddress(mailAddress: string): void {
     if (!this.RE.test(mailAddress)) {
       throw new Error(`Invalid mail address: ${mailAddress}`)
