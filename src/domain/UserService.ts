@@ -6,7 +6,7 @@ import { UserRepository } from './UserRepository'
 @injectable()
 export class UserService {
   constructor(
-    @inject('UserRepository') private userRepository: UserRepository
+    @inject('UserRepository') private readonly userRepository: UserRepository
   ) {}
 
   exits(user: User): boolean {

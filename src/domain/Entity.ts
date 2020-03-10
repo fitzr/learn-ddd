@@ -1,16 +1,10 @@
 import { Id } from './Id'
 
 export abstract class Entity<V extends Id, T> {
-  readonly id: V
-  readonly props: T
-
-  protected constructor(id: V, props: T) {
-    this.id = id
-    this.props = props
-  }
+  protected constructor(readonly props: T, readonly id?: V) {}
 
   public equals(v?: Entity<V, T>): boolean {
-    if (v === null || v === undefined) {
+    if (v == undefined || this.id == undefined) {
       return false
     }
     if (this === v) {

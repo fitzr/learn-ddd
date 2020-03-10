@@ -15,7 +15,7 @@ export class User extends Entity<UserId, UserProps> {
     this.props.name = name
   }
 
-  constructor(id: UserId, props: UserProps) {
-    super(id, props)
+  constructor(props: UserProps, id?: UserId) {
+    super(props, id)
   }
 }
