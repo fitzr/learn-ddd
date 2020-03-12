@@ -1,10 +1,10 @@
 import 'reflect-metadata'
-import { UserService } from '../../src/domain/UserService'
-import { InMemoryUserRepository } from '../infrastructure/InMemoryUserRepository'
-import { User } from '../../src/domain/User'
-import { UserName } from '../../src/domain/UserName'
-import { UserId } from '../../src/domain/UserId'
-import { MailAddress } from '../../src/domain/MailAddress'
+import { UserService } from '../../../src/domain/user/UserService'
+import { InMemoryUserRepository } from '../../../src/infrastructure/InMemoryUserRepository'
+import { User } from '../../../src/domain/user/User'
+import { UserName } from '../../../src/domain/user/UserName'
+import { UserId } from '../../../src/domain/user/UserId'
+import { MailAddress } from '../../../src/domain/user/MailAddress'
 
 describe('UserService', () => {
   const userRepository = new InMemoryUserRepository()

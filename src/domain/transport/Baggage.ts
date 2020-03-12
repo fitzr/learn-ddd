@@ -1,5 +1,5 @@
-import { Entity } from './Entity'
-import { Id } from './Id'
+import { Entity } from '../Entity'
+import { Id } from '../Id'
 
 export class BaggageId extends Id {
   constructor(value: string) {

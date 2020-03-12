@@ -1,5 +1,5 @@
-import { User } from '../domain/User'
-import { UserId } from '../domain/UserId'
+import { User } from '../../domain/user/User'
+import { UserId } from '../../domain/user/UserId'
 
 export class UserData {
   readonly id: string

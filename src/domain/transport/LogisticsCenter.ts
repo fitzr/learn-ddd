@@ -1,5 +1,5 @@
-import { Entity } from './Entity'
-import { Id } from './Id'
+import { Entity } from '../Entity'
+import { Id } from '../Id'
 import { Baggage } from './Baggage'
 
 export class LogisticsCenterId extends Id {

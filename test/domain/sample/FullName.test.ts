@@ -1,4 +1,4 @@
-import { FullName } from '../../src/domain/FullName'
+import { FullName } from '../../../src/domain/sample/FullName'
 
 describe('FullName', () => {
   test('is created with props', () => {

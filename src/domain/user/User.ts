@@ -1,4 +1,4 @@
-import { Entity } from './Entity'
+import { Entity } from '../Entity'
 import { UserId } from './UserId'
 import { UserName } from './UserName'
 import { MailAddress } from './MailAddress'

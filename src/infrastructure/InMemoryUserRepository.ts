@@ -1,7 +1,7 @@
-import { UserRepository } from '../../src/domain/UserRepository'
-import { User } from '../../src/domain/User'
-import { UserName } from '../../src/domain/UserName'
-import { UserId } from '../../src/domain/UserId'
+import { UserRepository } from '../domain/user/UserRepository'
+import { User } from '../domain/user/User'
+import { UserName } from '../domain/user/UserName'
+import { UserId } from '../domain/user/UserId'
 
 export class InMemoryUserRepository implements UserRepository {
   store = new Map<string, User>()
