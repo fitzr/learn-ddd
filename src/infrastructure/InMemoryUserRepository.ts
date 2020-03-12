@@ -1,8 +1,11 @@
+import 'reflect-metadata'
+import { singleton } from 'tsyringe'
 import { UserRepository } from '../domain/user/UserRepository'
 import { User } from '../domain/user/User'
 import { UserName } from '../domain/user/UserName'
 import { UserId } from '../domain/user/UserId'
 
+@singleton()
 export class InMemoryUserRepository implements UserRepository {
   store = new Map<string, User>()
 
