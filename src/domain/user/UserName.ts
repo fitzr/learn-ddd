@@ -15,8 +15,8 @@ export class UserName extends ValueObject<UserNameProps> {
   }
 
   static validateName(name: string): void {
-    if (!/^[a-zA-Z_]{3,15}$/.test(name)) {
-      throw new Error(`Username: "${name}" must be [a-zA-Z_]{3,15}`)
+    if (!/^[a-zA-Z0-9_]{3,15}$/.test(name)) {
+      throw new Error(`Username: "${name}" must be [a-zA-Z0-9_]{3,15}`)
     }
   }
 }

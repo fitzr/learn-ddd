@@ -17,6 +17,12 @@ export class InMemoryUserRepository implements UserRepository {
     return user ? this.clone(user) : undefined
   }
 
+  findAllById(ids: ReadonlyArray<UserId>): User[] {
+    return ids
+      .map(id => this.findById(id))
+      .filter((user): user is User => user != undefined)
+  }
+
   findByName(name: UserName): User | undefined {
     for (const user of this.store.values()) {
       if (user.name.equals(name)) {

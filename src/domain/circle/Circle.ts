@@ -1,17 +1,15 @@
 import { Entity } from '../Entity'
 import { CircleName } from './CircleName'
 import { CircleId } from './CircleId'
-import { User } from '../user/User'
 import { UserId } from '../user/UserId'
 
 export type CircleProps = {
   name: CircleName
+  owner: UserId
   members: UserId[]
 }
 
 export class Circle extends Entity<CircleId, CircleProps> {
-  static MEMBER_MAX_COUNT = 30
-
   constructor(id: CircleId, props: CircleProps) {
     super(id, props)
   }
@@ -24,22 +22,16 @@ export class Circle extends Entity<CircleId, CircleProps> {
     this.props.name = name
   }
 
+  get owner(): UserId {
+    return this.props.owner
+  }
+
   get members(): ReadonlyArray<UserId> {
-    return Object.freeze(this.props.members)
+    return Object.freeze([...this.props.members])
   }
 
-  get memberCount(): number {
-    return this.props.members.length + 1 // +1: for the count of owner
-  }
-
-  isFull(): boolean {
-    return this.memberCount >= Circle.MEMBER_MAX_COUNT
-  }
-
-  join(user: User): void {
-    if (this.isFull()) {
-      throw new Error(`Circle: ${this.name.value} is full.`)
-    }
-    this.props.members.push(user.id)
+  // HACK: This method must be package private. Only for CircleService
+  addMember(userId: UserId): void {
+    this.props.members.push(userId)
   }
 }

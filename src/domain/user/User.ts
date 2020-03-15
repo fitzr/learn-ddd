@@ -6,6 +6,7 @@ import { MailAddress } from './MailAddress'
 export type UserProps = {
   name: UserName
   mail: MailAddress
+  isPremium?: boolean
 }
 
 export class User extends Entity<UserId, UserProps> {
@@ -27,5 +28,9 @@ export class User extends Entity<UserId, UserProps> {
 
   changeMail(mail: MailAddress): void {
     this.props.mail = mail
+  }
+
+  get isPremium(): boolean {
+    return this.props?.isPremium === true
   }
 }
