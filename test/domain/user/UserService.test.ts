@@ -26,7 +26,7 @@ describe('UserService', () => {
         name: new UserName('existsName'),
         mail
       })
-      expect(userService.exits(user2)).toBe(true)
+      expect(userService.exists(user2)).toBe(true)
     })
 
     test('returns false when not exists', () => {
@@ -39,7 +39,7 @@ describe('UserService', () => {
         name: new UserName('uniqueName'),
         mail
       })
-      expect(userService.exits(user2)).toBe(false)
+      expect(userService.exists(user2)).toBe(false)
     })
   })
 })

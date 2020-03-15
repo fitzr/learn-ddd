@@ -4,6 +4,7 @@ import { UserRepository } from '../domain/user/UserRepository'
 import { User } from '../domain/user/User'
 import { UserName } from '../domain/user/UserName'
 import { UserId } from '../domain/user/UserId'
+import { MailAddress } from '../domain/user/MailAddress'
 
 @singleton()
 export class InMemoryUserRepository implements UserRepository {
@@ -32,6 +33,9 @@ export class InMemoryUserRepository implements UserRepository {
   }
 
   private clone(user: User): User {
-    return new User(user.id, Object.assign({}, user.props))
+    return new User(user.id, {
+      name: new UserName(user.name.value),
+      mail: new MailAddress(user.mail.value)
+    })
   }
 }

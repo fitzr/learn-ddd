@@ -9,8 +9,7 @@ export class UserService {
     @inject('UserRepository') private readonly userRepository: UserRepository
   ) {}
 
-  exits(user: User): boolean {
-    const sameNameUser = this.userRepository.findByName(user.name)
-    return sameNameUser ? !sameNameUser.id?.equals(user.id) : false
+  exists(user: User): boolean {
+    return !!this.userRepository.findByName(user.name)
   }
 }

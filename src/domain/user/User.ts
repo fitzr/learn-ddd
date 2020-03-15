@@ -9,11 +9,15 @@ export type UserProps = {
 }
 
 export class User extends Entity<UserId, UserProps> {
+  constructor(id: UserId, props: UserProps) {
+    super(id, props)
+  }
+
   get name(): UserName {
     return this.props.name
   }
 
-  set name(name: UserName) {
+  changeName(name: UserName): void {
     this.props.name = name
   }
 
@@ -21,11 +25,7 @@ export class User extends Entity<UserId, UserProps> {
     return this.props.mail
   }
 
-  set mail(mail: MailAddress) {
+  changeMail(mail: MailAddress): void {
     this.props.mail = mail
-  }
-
-  constructor(id: UserId, props: UserProps) {
-    super(id, props)
   }
 }

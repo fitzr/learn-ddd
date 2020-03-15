@@ -5,13 +5,13 @@ type IdProps = {
 }
 
 export abstract class Id extends ValueObject<IdProps> {
-  get value(): string {
-    return this.props.value
-  }
-
   protected constructor(value: string) {
     Id.validateId(value)
     super({ value })
+  }
+
+  get value(): string {
+    return this.props.value
   }
 
   protected static validateId(value: string): void {

@@ -18,7 +18,7 @@ describe('User', () => {
     const name = new UserName('test_user')
     const mail = new MailAddress('test@example.com')
     const user = new User(id, { name, mail })
-    user.name = new UserName('updated_name')
+    user.changeName(new UserName('updated_name'))
     expect(user.name.value).toBe('updated_name')
   })
 

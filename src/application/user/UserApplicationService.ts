@@ -29,7 +29,7 @@ export class UserApplicationService {
       name: new UserName(command.name),
       mail: new MailAddress(command.mail)
     })
-    if (this.userService.exits(user)) {
+    if (this.userService.exists(user)) {
       throw new Error('User already exists.')
     }
     this.userRepository.save(user)
@@ -42,13 +42,13 @@ export class UserApplicationService {
       throw new Error('User not found.')
     }
     if (command.name) {
-      user.name = new UserName(command.name)
+      user.changeName(new UserName(command.name))
+      if (this.userService.exists(user)) {
+        throw new Error('User already exists.')
+      }
     }
     if (command.mail) {
-      user.mail = new MailAddress(command.mail)
-    }
-    if (this.userService.exits(user)) {
-      throw new Error('User already exists.')
+      user.changeMail(new MailAddress(command.mail))
     }
     this.userRepository.save(user)
   }
