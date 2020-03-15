@@ -7,13 +7,6 @@ describe('FullName', () => {
     expect(fullName.lastName).toBe('Doe')
   })
 
-  test('cannot change props', () => {
-    const fullName = FullName.create('John', 'Doe')
-    expect(() => {
-      fullName.props.firstName = 'Mike'
-    }).toThrowError(/^Cannot assign to read only property/)
-  })
-
   test('can compare object', () => {
     const fullName1 = FullName.create('John', 'Doe')
     const fullName2 = FullName.create('John', 'Doe')
