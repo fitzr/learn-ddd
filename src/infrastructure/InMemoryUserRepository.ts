@@ -6,6 +6,8 @@ import { UserName } from '../domain/user/UserName'
 import { UserId } from '../domain/user/UserId'
 import { MailAddress } from '../domain/user/MailAddress'
 
+// This class should be replaced with a class using some database and be moved to the test directory.
+
 @singleton()
 export class InMemoryUserRepository implements UserRepository {
   store = new Map<string, User>()

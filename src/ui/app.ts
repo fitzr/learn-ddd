@@ -5,6 +5,8 @@ import { container } from 'tsyringe'
 import setup from './setup'
 import { UserController } from './controllers/UserController'
 
+// User interface using http sample.
+
 const app = express()
 app.use(
   bodyParser.urlencoded({

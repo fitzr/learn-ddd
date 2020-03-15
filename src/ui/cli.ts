@@ -5,7 +5,7 @@ import * as readline from 'readline'
 import { UserApplicationService } from '../application/user/UserApplicationService'
 import { RegisterUserCommand } from '../application/user/RegisterUserCommand'
 
-// COMMAND LINE INTERFACE SAMPLE
+// Command line interface sample.
 
 const rl = readline.createInterface({
   input: process.stdin,
