@@ -3,7 +3,7 @@ import { UserId } from './UserId'
 import { UserName } from './UserName'
 import { MailAddress } from './MailAddress'
 
-type UserProps = {
+export type UserProps = {
   name: UserName
   mail: MailAddress
 }
@@ -25,7 +25,7 @@ export class User extends Entity<UserId, UserProps> {
     this.props.mail = mail
   }
 
-  constructor(props: UserProps, id?: UserId) {
-    super(props, id)
+  constructor(id: UserId, props: UserProps) {
+    super(id, props)
   }
 }

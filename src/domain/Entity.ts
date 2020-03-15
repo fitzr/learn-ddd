@@ -1,7 +1,7 @@
 import { Id } from './Id'
 
 export abstract class Entity<V extends Id, T> {
-  protected constructor(readonly props: T, readonly id?: V) {}
+  protected constructor(readonly id: V, readonly props: T) {}
 
   public equals(v?: Entity<V, T>): boolean {
     if (v == undefined || this.id == undefined) {

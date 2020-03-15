@@ -24,13 +24,10 @@ describe('UserApplicationService', () => {
   describe('get', () => {
     test('returns the user data', () => {
       userRepository.save(
-        new User(
-          {
-            name: new UserName('test_user'),
-            mail: new MailAddress('test@example.com')
-          },
-          new UserId('test_id')
-        )
+        new User(new UserId('test_id'), {
+          name: new UserName('test_user'),
+          mail: new MailAddress('test@example.com')
+        })
       )
       const userData = userApplicationService.get(
         new UpdateUserCommand('test_id')
@@ -70,13 +67,10 @@ describe('UserApplicationService', () => {
   describe('update', () => {
     test('updates user name and mail address', () => {
       userRepository.save(
-        new User(
-          {
-            name: new UserName('test_user'),
-            mail: new MailAddress('test@example.com')
-          },
-          new UserId('test_id')
-        )
+        new User(new UserId('test_id'), {
+          name: new UserName('test_user'),
+          mail: new MailAddress('test@example.com')
+        })
       )
       userApplicationService.update(
         new UpdateUserCommand('test_id', 'updated_name', 'updated@example.com')
@@ -88,13 +82,10 @@ describe('UserApplicationService', () => {
 
     test('updates user name', () => {
       userRepository.save(
-        new User(
-          {
-            name: new UserName('test_user'),
-            mail: new MailAddress('test@example.com')
-          },
-          new UserId('test_id')
-        )
+        new User(new UserId('test_id'), {
+          name: new UserName('test_user'),
+          mail: new MailAddress('test@example.com')
+        })
       )
       userApplicationService.update(
         new UpdateUserCommand('test_id', 'updated_name')
@@ -106,13 +97,10 @@ describe('UserApplicationService', () => {
 
     test('updates mail address', () => {
       userRepository.save(
-        new User(
-          {
-            name: new UserName('test_user'),
-            mail: new MailAddress('test@example.com')
-          },
-          new UserId('test_id')
-        )
+        new User(new UserId('test_id'), {
+          name: new UserName('test_user'),
+          mail: new MailAddress('test@example.com')
+        })
       )
       userApplicationService.update(
         new UpdateUserCommand('test_id', undefined, 'updated@example.com')
@@ -124,22 +112,16 @@ describe('UserApplicationService', () => {
 
     test('returns error when name already exists', () => {
       userRepository.save(
-        new User(
-          {
-            name: new UserName('test_user'),
-            mail: new MailAddress('test@example.com')
-          },
-          new UserId('test_id')
-        )
+        new User(new UserId('test_id'), {
+          name: new UserName('test_user'),
+          mail: new MailAddress('test@example.com')
+        })
       )
       userRepository.save(
-        new User(
-          {
-            name: new UserName('exists_name'),
-            mail: new MailAddress('test@example.com')
-          },
-          new UserId('test_id2')
-        )
+        new User(new UserId('test_id2'), {
+          name: new UserName('exists_name'),
+          mail: new MailAddress('test@example.com')
+        })
       )
       expect(() => {
         userApplicationService.update(

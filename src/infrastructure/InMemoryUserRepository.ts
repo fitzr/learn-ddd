@@ -24,15 +24,14 @@ export class InMemoryUserRepository implements UserRepository {
   }
 
   save(user: User): void {
-    if (user.id) {
-      this.store.set(user.id.value, this.clone(user))
-    } else {
-      const id = new UserId((this.store.size + 1).toString(10))
-      this.store.set(id.value, new User(user.props, id))
-    }
+    this.store.set(user.id.value, this.clone(user))
+  }
+
+  nextIdentity(): UserId {
+    return new UserId((this.store.size + 1).toString())
   }
 
   private clone(user: User): User {
-    return new User(Object.assign({}, user.props), user.id)
+    return new User(user.id, Object.assign({}, user.props))
   }
 }

@@ -6,4 +6,5 @@ export interface UserRepository {
   save(user: User): void
   findById(id: UserId): User | undefined
   findByName(name: UserName): User | undefined
+  nextIdentity(): UserId
 }

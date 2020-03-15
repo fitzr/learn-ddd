@@ -12,7 +12,7 @@ type BaggageProps = {
 }
 
 export class Baggage extends Entity<BaggageId, BaggageProps> {
-  constructor(props: BaggageProps, id: BaggageId) {
-    super(props, id)
+  constructor(id: BaggageId, props: BaggageProps) {
+    super(id, props)
   }
 }

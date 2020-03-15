@@ -25,7 +25,7 @@ export class UserApplicationService {
   }
 
   register(command: RegisterUserCommand): void {
-    const user = new User({
+    const user = new User(this.userRepository.nextIdentity(), {
       name: new UserName(command.name),
       mail: new MailAddress(command.mail)
     })
