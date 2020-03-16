@@ -4,5 +4,5 @@ learn [ドメイン駆動設計入門 ボトムアップでわかる！ドメイ
 
 ## References
 
-[IDDD_Samples](https://github.com/Vaughnvernon/IDDD_Samples)
-[Value Objects - DDD w/ TypeScript](https://khalilstemmler.com/articles/typescript-value-object/)
+* [IDDD_Samples](https://github.com/Vaughnvernon/IDDD_Samples)
+* [Value Objects - DDD w/ TypeScript](https://khalilstemmler.com/articles/typescript-value-object/)
