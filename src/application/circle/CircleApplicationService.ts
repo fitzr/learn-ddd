@@ -1,13 +1,13 @@
 import { injectable, inject } from 'tsyringe'
-import { CircleRepository } from '../../domain/circle/CircleRepository'
-import { CircleService } from '../../domain/circle/CircleService'
+import { CircleRepository } from '../../domain/model/circle/CircleRepository'
+import { CircleService } from '../../domain/model/circle/CircleService'
 import { CreateCircleCommand } from './CreateCircleCommand'
-import { UserId } from '../../domain/user/UserId'
-import { UserRepository } from '../../domain/user/UserRepository'
-import { CircleName } from '../../domain/circle/CircleName'
+import { UserId } from '../../domain/model/user/UserId'
+import { UserRepository } from '../../domain/model/user/UserRepository'
+import { CircleName } from '../../domain/model/circle/CircleName'
 import { JoinCircleCommand } from './JoinCircleCommand'
-import { CircleId } from '../../domain/circle/CircleId'
-import { Circle } from '../../domain/circle/Circle'
+import { CircleId } from '../../domain/model/circle/CircleId'
+import { Circle } from '../../domain/model/circle/Circle'
 
 @injectable()
 export class CircleApplicationService {

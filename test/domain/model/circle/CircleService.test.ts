@@ -1,13 +1,13 @@
-import { InMemoryUserRepository } from '../../../src/infrastructure/InMemoryUserRepository'
-import { InMemoryCircleRepository } from '../../../src/infrastructure/InMemoryCircleRepository'
-import { User } from '../../../src/domain/user/User'
-import { UserId } from '../../../src/domain/user/UserId'
-import { UserName } from '../../../src/domain/user/UserName'
-import { MailAddress } from '../../../src/domain/user/MailAddress'
-import { Circle } from '../../../src/domain/circle/Circle'
-import { CircleName } from '../../../src/domain/circle/CircleName'
-import { CircleId } from '../../../src/domain/circle/CircleId'
-import { CircleService } from '../../../src/domain/circle/CircleService'
+import { InMemoryUserRepository } from '../../../../src/infrastructure/persistence/InMemoryUserRepository'
+import { InMemoryCircleRepository } from '../../../../src/infrastructure/persistence/InMemoryCircleRepository'
+import { User } from '../../../../src/domain/model/user/User'
+import { UserId } from '../../../../src/domain/model/user/UserId'
+import { UserName } from '../../../../src/domain/model/user/UserName'
+import { MailAddress } from '../../../../src/domain/model/user/MailAddress'
+import { Circle } from '../../../../src/domain/model/circle/Circle'
+import { CircleName } from '../../../../src/domain/model/circle/CircleName'
+import { CircleId } from '../../../../src/domain/model/circle/CircleId'
+import { CircleService } from '../../../../src/domain/model/circle/CircleService'
 
 describe('CircleService', () => {
   const createUser = (i: number): User =>

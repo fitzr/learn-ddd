@@ -1,5 +1,5 @@
 import { DependencyContainer } from 'tsyringe'
-import { InMemoryUserRepository } from '../infrastructure/InMemoryUserRepository'
+import { InMemoryUserRepository } from '../infrastructure/persistence/InMemoryUserRepository'
 
 const setupRepositories = (container: DependencyContainer): void => {
   container.register('UserRepository', {

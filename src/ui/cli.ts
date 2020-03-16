@@ -1,6 +1,6 @@
 import 'reflect-metadata'
 import { container } from 'tsyringe'
-import { InMemoryUserRepository } from '../infrastructure/InMemoryUserRepository'
+import { InMemoryUserRepository } from '../infrastructure/persistence/InMemoryUserRepository'
 import * as readline from 'readline'
 import { UserApplicationService } from '../application/user/UserApplicationService'
 import { RegisterUserCommand } from '../application/user/RegisterUserCommand'

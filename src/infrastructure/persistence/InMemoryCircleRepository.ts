@@ -1,9 +1,9 @@
 import 'reflect-metadata'
 import { singleton } from 'tsyringe'
-import { CircleRepository } from '../domain/circle/CircleRepository'
-import { Circle } from '../domain/circle/Circle'
-import { CircleId } from '../domain/circle/CircleId'
-import { CircleName } from '../domain/circle/CircleName'
+import { CircleRepository } from '../../domain/model/circle/CircleRepository'
+import { Circle } from '../../domain/model/circle/Circle'
+import { CircleId } from '../../domain/model/circle/CircleId'
+import { CircleName } from '../../domain/model/circle/CircleName'
 
 // This class should be replaced with a class using some database and be moved to the test directory.
 

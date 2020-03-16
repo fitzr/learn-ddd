@@ -1,7 +1,7 @@
-import { User } from '../../../src/domain/user/User'
-import { UserId } from '../../../src/domain/user/UserId'
-import { UserName } from '../../../src/domain/user/UserName'
-import { MailAddress } from '../../../src/domain/user/MailAddress'
+import { User } from '../../../../src/domain/model/user/User'
+import { UserId } from '../../../../src/domain/model/user/UserId'
+import { UserName } from '../../../../src/domain/model/user/UserName'
+import { MailAddress } from '../../../../src/domain/model/user/MailAddress'
 
 describe('User', () => {
   test('has name', () => {

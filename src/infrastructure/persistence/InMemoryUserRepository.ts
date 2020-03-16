@@ -1,10 +1,10 @@
 import 'reflect-metadata'
 import { singleton } from 'tsyringe'
-import { UserRepository } from '../domain/user/UserRepository'
-import { User } from '../domain/user/User'
-import { UserName } from '../domain/user/UserName'
-import { UserId } from '../domain/user/UserId'
-import { MailAddress } from '../domain/user/MailAddress'
+import { UserRepository } from '../../domain/model/user/UserRepository'
+import { User } from '../../domain/model/user/User'
+import { UserName } from '../../domain/model/user/UserName'
+import { UserId } from '../../domain/model/user/UserId'
+import { MailAddress } from '../../domain/model/user/MailAddress'
 
 // This class should be replaced with a class using some database and be moved to the test directory.
 

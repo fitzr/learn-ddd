@@ -1,13 +1,13 @@
 import 'reflect-metadata'
-import { InMemoryUserRepository } from '../../../src/infrastructure/InMemoryUserRepository'
-import { UserService } from '../../../src/domain/user/UserService'
+import { InMemoryUserRepository } from '../../../src/infrastructure/persistence/InMemoryUserRepository'
+import { UserService } from '../../../src/domain/model/user/UserService'
 import { UserApplicationService } from '../../../src/application/user/UserApplicationService'
-import { UserName } from '../../../src/domain/user/UserName'
+import { UserName } from '../../../src/domain/model/user/UserName'
 import { RegisterUserCommand } from '../../../src/application/user/RegisterUserCommand'
-import { User } from '../../../src/domain/user/User'
-import { MailAddress } from '../../../src/domain/user/MailAddress'
+import { User } from '../../../src/domain/model/user/User'
+import { MailAddress } from '../../../src/domain/model/user/MailAddress'
 import { UpdateUserCommand } from '../../../src/application/user/UpdateUserCommand'
-import { UserId } from '../../../src/domain/user/UserId'
+import { UserId } from '../../../src/domain/model/user/UserId'
 
 describe('UserApplicationService', () => {
   const userRepository = new InMemoryUserRepository()
