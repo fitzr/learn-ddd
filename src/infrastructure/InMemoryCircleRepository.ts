@@ -37,7 +37,8 @@ export class InMemoryCircleRepository implements CircleRepository {
     return new Circle(circle.id, {
       name: new CircleName(circle.name.value),
       owner: circle.owner,
-      members: Array.from(circle.members)
+      members: Array.from(circle.members),
+      created: new Date()
     })
   }
 }

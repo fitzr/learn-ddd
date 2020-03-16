@@ -3,7 +3,7 @@ import { injectable, inject } from 'tsyringe'
 import { CircleRepository } from './CircleRepository'
 import { Circle } from './Circle'
 import { User } from '../user/User'
-import { CircleFullSpecification } from './CircleFullSpecification'
+import { FullCircleSpecification } from './FullCircleSpecification'
 import { CircleMembers } from './CircleMembers'
 import { UserRepository } from '../user/UserRepository'
 
@@ -27,8 +27,8 @@ export class CircleService {
     }
     const members = this.userRepository.findAllById(circle.members)
     const circleMembers = new CircleMembers(owner, members)
-    const circleFullSpecification = new CircleFullSpecification()
-    if (circleFullSpecification.isFull(circleMembers)) {
+    const circleFullSpecification = new FullCircleSpecification()
+    if (circleFullSpecification.isSatisfiedBy(circleMembers)) {
       throw new Error('The circle is full.')
     }
     circle.addMember(user.id)

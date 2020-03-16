@@ -31,7 +31,8 @@ export class CircleApplicationService {
     const circle = new Circle(this.circleRepository.nextIdentity(), {
       name,
       owner: owner.id,
-      members: []
+      members: [],
+      created: new Date()
     })
     if (this.circleService.exists(circle)) {
       throw new Error('Requested circle already exists.')

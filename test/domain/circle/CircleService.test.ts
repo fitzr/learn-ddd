@@ -34,13 +34,15 @@ describe('CircleService', () => {
       const circle1 = new Circle(new CircleId('circle1'), {
         name: new CircleName('existsName'),
         owner: users[0].id,
-        members: [users[1].id]
+        members: [users[1].id],
+        created: new Date()
       })
       circleRepository.save(circle1)
       const circle2 = new Circle(new CircleId('circle2'), {
         name: new CircleName('existsName'),
         owner: users[2].id,
-        members: [users[3].id]
+        members: [users[3].id],
+        created: new Date()
       })
       expect(circleService.exists(circle2)).toBe(true)
     })
@@ -49,13 +51,15 @@ describe('CircleService', () => {
       const circle1 = new Circle(new CircleId('circle1'), {
         name: new CircleName('existsName'),
         owner: users[0].id,
-        members: [users[1].id]
+        members: [users[1].id],
+        created: new Date()
       })
       circleRepository.save(circle1)
       const circle2 = new Circle(new CircleId('circle2'), {
         name: new CircleName('uniqueName'),
         owner: users[2].id,
-        members: [users[3].id]
+        members: [users[3].id],
+        created: new Date()
       })
       expect(circleService.exists(circle2)).toBe(false)
     })
@@ -66,7 +70,8 @@ describe('CircleService', () => {
       const circle = new Circle(new CircleId('id'), {
         name: new CircleName('test_circle'),
         owner: users[0].id,
-        members: []
+        members: [],
+        created: new Date()
       })
       expect(circle.members.length).toBe(0)
       circleService.addMember(circle, users[1])
@@ -77,7 +82,8 @@ describe('CircleService', () => {
       const circle = new Circle(new CircleId('id'), {
         name: new CircleName('test_circle'),
         owner: users[0].id,
-        members: users.slice(1, 31).map(user => user.id)
+        members: users.slice(1, 31).map(user => user.id),
+        created: new Date()
       })
       expect(circle.members.length).toBe(30)
       expect(() => {

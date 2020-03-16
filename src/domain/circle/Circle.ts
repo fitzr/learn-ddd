@@ -7,6 +7,7 @@ export type CircleProps = {
   name: CircleName
   owner: UserId
   members: UserId[]
+  created: Date
 }
 
 export class Circle extends Entity<CircleId, CircleProps> {
@@ -26,8 +27,16 @@ export class Circle extends Entity<CircleId, CircleProps> {
     return this.props.owner
   }
 
+  get created(): Date {
+    return this.props.created
+  }
+
   get members(): ReadonlyArray<UserId> {
     return Object.freeze([...this.props.members])
+  }
+
+  get memberCount(): number {
+    return this.props.members.length + 1 // +1: count for the owner
   }
 
   // HACK: This method must be package private. Only for CircleService
